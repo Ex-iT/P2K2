@@ -1,0 +1,14 @@
+{
+  "extends": ["@antfu"],
+  "rules": {
+    "brace-style": "off",
+    "@typescript-eslint/brace-style": ["error", "1tbs"],
+    "curly": ["error", "all"],
+    "vue/singleline-html-element-content-newline": [
+      "error",
+      {
+        "ignores": ["NuxtLink", "abbr"]
+      }
+    ]
+  }
+}

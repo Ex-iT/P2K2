@@ -1,0 +1,27 @@
+{
+  "name": "p2k2",
+  "private": true,
+  "engines": {
+    "npm": ">=9.8.1",
+    "node": ">=16.20.0",
+    "yarn": ">=1.22.19"
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "lint": "yarn lint:js && yarn lint:typescript",
+    "lint:typescript": "nuxt typecheck .",
+    "lint:js": "eslint ."
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.39.8",
+    "@nuxt/devtools": "latest",
+    "@types/node": "^20.4.5",
+    "eslint": "^8.45.0",
+    "nuxt": "^3.6.5",
+    "typescript": "^5.1.6"
+  }
+}
