@@ -1,6 +1,6 @@
 # P2000 v2
 
-This is a improved and user-friendly version of the [P2000](<https://nl.wikipedia.org/wiki/P2000_(netwerk)>) notifications.
+This is an improved and user-friendly version of the [P2000](<https://nl.wikipedia.org/wiki/P2000_(netwerk)>) notifications.
 
 ## Development
 

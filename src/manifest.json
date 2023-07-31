@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "P2K2",
+  "description": "Improved and user-friendly version of the P2000 notifications",
+  "version": "0.1",
+  "action": {
+    "default_title": "P2K2",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "images/favicon-16.png",
+      "24": "images/favicon-24.png",
+      "32": "images/favicon-32.png",
+      "48": "images/favicon-48.png",
+      "128": "images/favicon-128.png"
+    }
+  },
+  "icons": {
+    "32": "images/favicon-32.png",
+    "128": "images/favicon-128.png"
+  }
+}

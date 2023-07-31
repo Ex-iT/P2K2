@@ -7,21 +7,28 @@
     "yarn": ">=1.22.17"
   },
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare",
-    "lint": "yarn lint:js && yarn lint:typescript",
-    "lint:typescript": "nuxt typecheck .",
+    "build": "run-s clean && run-p build:*",
+    "build:src": "node index.mjs",
+    "build:typescript": "npx tsc",
+    "clean": "rimraf dist",
+    "dev": "run-s clean && run-p dev:*",
+    "dev:src": "node index.mjs -w",
+    "dev:typescript": "npx tsc -w",
+    "lint": "run-p lint:*",
+    "lint:typescript": "npx tsc",
     "lint:js": "eslint ."
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.8",
-    "@nuxt/devtools": "latest",
+    "@types/chrome": "^0.0.242",
     "@types/node": "^20.4.5",
-    "eslint": "^8.45.0",
-    "nuxt": "^3.6.5",
-    "typescript": "^5.1.6"
+    "@typescript-eslint/eslint-plugin": "^6.2.0",
+    "@typescript-eslint/parser": "^6.2.0",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.9.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^3.0.0",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.6",
+    "watcher": "^2.2.2"
   }
 }
