@@ -1,4 +1,4 @@
-# P2000 v2
+# P2K2
 
 This is an improved and user-friendly version of the [P2000](<https://nl.wikipedia.org/wiki/P2000_(netwerk)>) notifications.
 
@@ -10,7 +10,7 @@ To install all dependencies run:
 yarn install
 ```
 
-To start the development server run:
+To start the development watchers run:
 
 ```bash
 yarn dev
@@ -103,4 +103,4 @@ public class DeviceRegistrationSentRecord {
 
 ## Attribution
 
-Icons by [SVG Repo](<https://www.svgrepo.com>).
+Icons by [SVG Repo](https://www.svgrepo.com).
