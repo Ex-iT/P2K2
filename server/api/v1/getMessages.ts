@@ -1,4 +1,5 @@
 import { randomInt, randomUUID } from 'node:crypto'
+import capcodes from '@/public/capcodes.json'
 
 export default defineEventHandler(async () => {
   // @TODO: move to config
@@ -33,11 +34,31 @@ export default defineEventHandler(async () => {
     // @TODO: Create a return type for this promise
     return fetch(`${URL}${ENDPOINT}`, {
       method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(payload),
-    }).then(response => response.json())
+    })
+      .then(response => response.json())
+      .then((json) => {
+        // @TODO: Type the item
+        json.forEach((item) => {
+          if (item.cc.length) {
+            item.capcodes = item.cc.map((cc: string) => {
+              const code = `0${cc}`
+              // @TODO: type the capcodes.json
+              const capcode = capcodes[code]
+              if (capcode) {
+                return {
+                  id: capcode.id,
+                  label: capcode.label,
+                }
+              }
+              return code
+            })
+          }
+        })
+
+        return json
+      })
   } catch (error) {
     return []
   }

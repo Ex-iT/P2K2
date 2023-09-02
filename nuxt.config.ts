@@ -22,5 +22,18 @@ export default defineNuxtConfig({
       ],
     },
   },
+  modules: [
+    '@invictus.codes/nuxt-vuetify',
+  ],
+  vuetify: {
+    moduleOptions: {
+      treeshaking: true,
+    },
+    vuetifyOptions: {
+      theme: {
+        defaultTheme: 'dark',
+      },
+    },
+  },
 },
 )

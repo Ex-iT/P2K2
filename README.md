@@ -26,8 +26,6 @@ The Api is at `https://webservice-v3.112-nederland.nl` and accepts POST requests
 POST /api/PushMessageCache/GetP2000Messages HTTP/2
 Host: webservice-v3.112-nederland.nl
 Content-Type: application/json; charset=utf-8
-Content-Length: 106
-Accept-Encoding: gzip, deflate
 User-Agent: okhttp/3.10.0
 ```
 
