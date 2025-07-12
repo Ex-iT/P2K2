@@ -1,28 +1,32 @@
 {
   "name": "p2k2",
+  "type": "module",
   "private": true,
-  "engines": {
-    "npm": ">=9.8.1",
-    "node": ">=16.20.0",
-    "yarn": ">=1.22.17"
-  },
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "yarn lint:js && yarn lint:typescript",
+    "lint": "pnpm run lint:js && pnpm run lint:typescript && pnpm run lint:style",
+    "lint:style": "stylelint **/*.{css,vue}",
     "lint:typescript": "nuxt typecheck .",
     "lint:js": "eslint ."
   },
-  "devDependencies": {
-    "@antfu/eslint-config": "^0.41.0",
-    "@invictus.codes/nuxt-vuetify": "^0.3.0",
-    "@nuxt/devtools": "0.8.2",
-    "@types/node": "^20.5.8",
-    "eslint": "^8.48.0",
-    "nuxt": "^3.7.0",
-    "typescript": "^5.2.2"
+  "dependencies": {
+    "@antfu/eslint-config": "^4.16.2",
+    "@nuxt/eslint": "1.5.2",
+    "@nuxt/icon": "1.15.0",
+    "@nuxt/ui": "3.2.0",
+    "eslint": "^9.31.0",
+    "nuxt": "^3.17.6",
+    "stylelint": "^16.21.1",
+    "stylelint-config-recommended-vue": "^1.6.1",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-order": "^7.0.0",
+    "typescript": "^5.8.3",
+    "vue": "^3.5.17",
+    "vue-router": "^4.5.1"
   }
 }
