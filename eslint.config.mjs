@@ -12,6 +12,7 @@ export default withNuxt(
     },
     {
       rules: {
+        'vue/no-multiple-template-root': 'off',
         'style/brace-style': ['error', '1tbs'],
         'curly': ['error', 'all'],
         'vue/singleline-html-element-content-newline': ['error', {

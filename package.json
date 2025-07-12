@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@antfu/eslint-config": "^4.16.2",
+    "@iconify-json/ic": "^1.2.2",
     "@nuxt/eslint": "1.5.2",
     "@nuxt/icon": "1.15.0",
     "@nuxt/ui": "3.2.0",
@@ -25,8 +26,10 @@
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-order": "^7.0.0",
+    "tailwindcss": "^4.1.11",
     "typescript": "^5.8.3",
     "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "vue-tsc": "^3.0.1"
   }
 }

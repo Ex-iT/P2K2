@@ -3,14 +3,6 @@
   "plugins": ["stylelint-order"],
   "rules": {
     "order/properties-alphabetical-order": true,
-    "property-no-unknown": [
-      true,
-      {
-        "ignoreProperties": [
-          "position-anchor",
-          "position-try-fallbacks"
-        ]
-      }
-    ]
+    "import-notation": "string"
   }
 }

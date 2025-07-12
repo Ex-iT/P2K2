@@ -1,0 +1,13 @@
+{
+  "name": "P2000 v2",
+  "short_name": "P2K2",
+  "description": "",
+  "id": "/?homescreen=1",
+  "start_url": "/?homescreen=1",
+  "display": "standalone",
+  "theme_color": "#FFFFFF",
+  "background_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+  ]
+}
