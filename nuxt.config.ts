@@ -22,8 +22,15 @@ export default defineNuxtConfig({
         },
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-        { rel: 'manifest', href: '/site.webmanifest' },
+        {
+          rel: 'icon',
+          type: 'image/x-icon',
+          href: '/favicon.ico',
+        },
+        {
+          rel: 'manifest',
+          href: '/site.webmanifest',
+        },
       ],
     },
   },
@@ -32,6 +39,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@nuxt/ui',
+    '@vueuse/nuxt',
   ],
 
   css: ['~/assets/css/main.css'],
