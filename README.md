@@ -20,4 +20,4 @@ pnpm dev
 ```
 
 ## Default icon set
-- [Google Material Icons](https://icones.js.org/collection/ic)
+- [Material Design Icons](https://icon-sets.iconify.design/mdi/)

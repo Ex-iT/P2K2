@@ -1,6 +1,6 @@
 <template>
   <footer class="mb-5">
-    <USeparator icon="ic:sharp-add-alarm" />
+    <USeparator icon="mdi:alarm-plus" />
 
     <UContainer class="my-5 flex justify-center">
       <ul class="flex flex-col gap-3">
