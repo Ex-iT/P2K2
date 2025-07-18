@@ -18,15 +18,34 @@ export default defineNuxtConfig({
         },
         {
           name: 'description',
-          content: '',
+          content: 'P2000 meldingen van de brandweer, ambulance, politie en KNRM',
+        },
+        {
+          name: 'apple-mobile-web-app-title',
+          content: 'P2K2',
         },
       ],
       link: [
         {
           rel: 'icon',
+          type: 'image/png',
+          sizes: '96x96',
+          href: '/favicon-96x96.png',
+        },
+        {
+          rel: 'apple-touch-icon',
+          sizes: '180x180',
+          href: '/apple-touch-icon.png',
+        },
+        {
+          rel: 'icon',
           type: 'image/svg+xml',
           sizes: 'any',
           href: '/favicon.svg',
+        },
+        {
+          rel: 'shortcut icon',
+          href: '/favicon.ico',
         },
         {
           rel: 'manifest',
