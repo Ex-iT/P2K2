@@ -46,6 +46,17 @@ export default defineNuxtConfig({
         {
           rel: 'shortcut icon',
           href: '/favicon.ico',
+          media: '(prefers-color-scheme:no-preference)',
+        },
+        {
+          rel: 'shortcut icon',
+          href: '/favicon-dark.ico',
+          media: '(prefers-color-scheme:dark)',
+        },
+        {
+          rel: 'shortcut icon',
+          href: '/favicon.ico',
+          media: '(prefers-color-scheme:light)',
         },
         {
           rel: 'manifest',
