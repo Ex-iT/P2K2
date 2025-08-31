@@ -13,7 +13,9 @@
             class="transition flex items-center hover:opacity-75"
           >
             <UIcon name="mdi:github-box" size="25" />
-            <p class="pl-1.5">P2K2 Github</p>
+            <p class="pl-1.5">
+              P2K2 Github
+            </p>
           </NuxtLink>
         </li>
 
@@ -26,7 +28,9 @@
             class="transition flex items-center hover:opacity-75"
           >
             <UIcon name="mdi:web" size="25" />
-            <p class="pl-1.5">Data livep2000.nl</p>
+            <p class="pl-1.5">
+              Data livep2000.nl
+            </p>
           </NuxtLink>
         </li>
       </ul>

@@ -14,12 +14,15 @@ interface TimelineData {
 function parseDataToItems(data: TimelineData[]) {
   return data.map((item) => {
     const parsedSpi = parseSpi(item.SPI.toString())
+    const title = item.TXT.replace(/(<([^>]+)>)/g, '')
+    const description = item.capcodes.map(capcode => capcode.CTT).join('\n')
+    const icon = getDiiIcon(item.DII)
 
     return {
       date: `${parsedSpi.TME} ${parsedSpi.DTT}`,
-      title: item.TXT,
-      description: item.capcodes.map(capcode => capcode.CTT).join('\n'),
-      icon: getDiiIcon(item.DII),
+      title,
+      description,
+      icon,
       lat: item.LAT,
       lon: item.LON,
     }

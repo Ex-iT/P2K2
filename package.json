@@ -15,23 +15,26 @@
     "lint:js": "eslint ."
   },
   "dependencies": {
-    "@antfu/eslint-config": "^4.17.0",
     "@iconify-json/mdi": "^1.2.3",
     "@nuxt/eslint": "1.5.2",
     "@nuxt/icon": "1.15.0",
     "@nuxt/ui": "3.2.0",
-    "@vueuse/core": "^13.5.0",
+    "@vueuse/core": "^13.8.0",
     "@vueuse/nuxt": "13.5.0",
-    "eslint": "^9.31.0",
-    "nuxt": "^4.0.0",
-    "stylelint": "^16.22.0",
+    "nuxt": "^4.0.3",
+    "stylelint": "^16.23.1",
     "stylelint-config-recommended-vue": "^1.6.1",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-order": "^7.0.0",
-    "tailwindcss": "^4.1.11",
-    "typescript": "^5.8.3",
-    "vue": "^3.5.17",
+    "tailwindcss": "^4.1.12",
+    "typescript": "^5.9.2",
+    "vue": "^3.5.20",
     "vue-router": "^4.5.1",
-    "vue-tsc": "^3.0.3"
+    "vue-tsc": "^3.0.6"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^5.2.1",
+    "eslint": "^9.34.0",
+    "eslint-plugin-format": "^1.0.1"
   }
 }

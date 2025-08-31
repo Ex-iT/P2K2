@@ -1,4 +1,4 @@
-[![ci](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml)  [![Vercel](https://vercelbadge.vercel.app/api/ex-it/p2k2)](https://p2k2.ex-it.nl/)
+[![ci](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml) [![Vercel](https://vercelbadge.vercel.app/api/ex-it/p2k2)](https://p2k2.ex-it.nl/)
 
 # P2000 v2
 
@@ -20,4 +20,5 @@ pnpm dev
 ```
 
 ## Default icon set
+
 - [Material Design Icons](https://icon-sets.iconify.design/mdi/)
