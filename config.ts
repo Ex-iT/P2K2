@@ -13,25 +13,20 @@ export const WS_AUTH_RESPONSE = 7 // Authentication response code
 export const MAPS_URL = 'https://maps.livep2000.nl/map.php?DII=2&LAT=&LON=&TXT=&ADR='
 export const MAX_ITEMS = 50
 
-export const RAD_RESET = {
-  0: '1gp7nj3',
-  1: '1ug4yd3',
-  2: 'ydb931',
-  3: '1pv5ur3',
-  4: '3',
-  5: '13vwye8',
-  6: '0',
-  7: '0',
-  8: '0',
-  9: '0',
-}
-
 export const REGIONS: IREGION[] = [
   {
     label: 'Alle regios',
     data: {
       0: '1gp7nj3',
-      5: 'qug16o',
+      1: '1ug4yd3',
+      2: 'ydb931',
+      3: '1pv5ur3',
+      4: '3',
+      5: '13vwye8',
+      6: '0',
+      7: '0',
+      8: '0',
+      9: '0',
     },
   },
   {
