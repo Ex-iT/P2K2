@@ -28,6 +28,7 @@ const items = computed(() => REGIONS.map(region => ({
     v-model:open="open"
     :items="items"
     :disabled="props.disabled"
+    :modal="false"
     :content="{
       align: 'start',
     }"
