@@ -1,12 +1,12 @@
 <script setup lang="ts">
 const {
-  ensurePermissions,
+  // ensurePermissions,
   permissionGranted,
   isSupported: isWebNotificationSupported,
   showNotification,
   closeNotification,
   onClickNotification,
-  notificationOptions,
+  // notificationOptions,
 } = useWebNotification()
 
 const isLive = ref(false)
@@ -17,8 +17,8 @@ onClickNotification(() => {
 })
 
 async function requestNotificationPermission() {
-  const a = await ensurePermissions()
-  console.log(a)
+  // const a = await ensurePermissions()
+  // console.log(a)
 }
 
 function triggerNotification() {

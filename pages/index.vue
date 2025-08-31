@@ -34,10 +34,16 @@ watch(isLive, (isConnected) => {
   immediate: true,
 })
 
-watch(region, (newRegion, _oldRegion) => {
+watch(region, (newRegion) => {
   if (newRegion) {
+    // Reset RAD
     sendWS(JSON.stringify({
-      COM: 12, // Data request
+      COM: 12,
+      RAD: {},
+    }))
+
+    sendWS(JSON.stringify({
+      COM: 12,
       RAD: newRegion.data,
     }))
   }
