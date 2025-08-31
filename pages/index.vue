@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MAX_ITEMS, REGIONS } from '~/config'
+import { MAX_ITEMS, RAD_RESET, REGIONS } from '~/config'
 
 const isLive = ref(false)
 const region = ref(REGIONS[0])
@@ -36,10 +36,9 @@ watch(isLive, (isConnected) => {
 
 watch(region, (newRegion) => {
   if (newRegion) {
-    // Reset RAD
     sendWS(JSON.stringify({
       COM: 12,
-      RAD: {},
+      RAD: RAD_RESET,
     }))
 
     sendWS(JSON.stringify({
