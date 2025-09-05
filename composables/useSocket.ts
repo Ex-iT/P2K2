@@ -1,5 +1,5 @@
 import type { TimelineItem } from '@nuxt/ui'
-import { WS_AUTH_RESPONSE, WS_DATA_REQ, WS_HANDSHAKE, WS_URL } from '~/config'
+import { WS_AUTH_RESPONSE, WS_DATA_REQ, WS_HANDSHAKE, WS_RESET, WS_URL } from '~/config'
 
 const items = ref<TimelineItem[]>([])
 const newCount = ref(0)
@@ -40,8 +40,17 @@ watch(data, (data) => {
   }
 })
 
+function sendData(data: any) {
+  if (status.value === 'OPEN') {
+    send(JSON.stringify(WS_RESET))
+    send(JSON.stringify(data))
+  } else {
+    console.error('WebSocket is not open')
+  }
+}
+
 function useSocket() {
-  return { newCount, items, status, data, send, open, close }
+  return { newCount, items, status, data, send: sendData, open, close }
 }
 
 export {

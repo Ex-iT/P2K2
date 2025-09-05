@@ -224,3 +224,8 @@ export const REGIONS: IREGION[] = [
     },
   },
 ]
+
+export const WS_RESET = {
+  COM: 12,
+  RAD: REGIONS[0]!.data,
+}

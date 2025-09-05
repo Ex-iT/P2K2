@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { MAX_ITEMS, REGIONS } from '~/config'
 
+const userSettings = useWebStorage<UserSettings>('userSettings')
+
 const isLive = ref(false)
 const region = ref(REGIONS[0])
 
@@ -12,9 +14,18 @@ const {
   open: openWS,
   close: closeWS,
   send: sendWS,
+  status: statusWS,
 } = useSocket()
 
 const items = computed(() => allItems.value.slice(0, MAX_ITEMS))
+
+function setRegion(region: IREGION) {
+  sendWS({
+    COM: 12,
+    RAD: region.data,
+  })
+  userSettings.set({ region })
+}
 
 watch(newCount, (newCount) => {
   if (newCount < MAX_ITEMS) {
@@ -24,28 +35,34 @@ watch(newCount, (newCount) => {
 
 watch(isLive, (isConnected) => {
   if (isConnected) {
-    region.value = REGIONS[0]
     openWS()
-  }
-  else {
+  } else {
     closeWS()
   }
 }, {
   immediate: true,
 })
 
-watch(region, (newRegion) => {
-  if (newRegion) {
-    sendWS(JSON.stringify({
-      COM: 12,
-      RAD: REGIONS[0]?.data || {},
-    }))
-
-    sendWS(JSON.stringify({
-      COM: 12,
-      RAD: newRegion.data,
-    }))
+watch(statusWS, (status) => {
+  if (status === 'OPEN') {
+    // @TODO: Find a better solution for this
+    setTimeout(() => {
+      sendWS({
+        COM: 12,
+        RAD: region.value!.data,
+      })
+    }, 100)
   }
+})
+
+watch(region, (newRegion) => {
+  if (newRegion && isLive.value) {
+    setRegion(newRegion)
+  }
+})
+
+onMounted(() => {
+  region.value = userSettings.get('region')
 })
 
 onUnmounted(() => {
