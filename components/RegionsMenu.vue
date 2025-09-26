@@ -38,7 +38,7 @@ const items = computed(() => REGIONS.map(region => ({
   >
     <UButton
       :label="model?.label || 'Selecteer een regio'"
-      icon="i-lucide-menu"
+      icon="mdi:menu"
       color="neutral"
       variant="outline"
     />
