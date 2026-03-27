@@ -1,7 +1,7 @@
-import type { TimelineItem } from '@nuxt/ui'
-import { WS_AUTH_RESPONSE, WS_DATA_REQ, WS_HANDSHAKE, WS_RESET, WS_URL } from '~/config'
+import { MAX_ITEMS, WS_AUTH_RESPONSE, WS_DATA_REQ, WS_HANDSHAKE, WS_RESET, WS_URL } from '~/config'
+import type { RawTimelineData, WSResponse, TimelineAlert } from '~/shared/types/websocket'
 
-const items = ref<TimelineItem[]>([])
+const items = ref<TimelineAlert[]>([])
 const newCount = ref(0)
 
 const { status, data, send, open, close } = useWebSocket(WS_URL, {
@@ -23,19 +23,22 @@ watch(status, (status) => {
 
 watch(data, (data) => {
   if (data) {
-    const parsedData = JSON.parse(data) || {}
+    const parsedData = JSON.parse(data) as RawTimelineData[] | WSResponse
 
     if (Array.isArray(parsedData)) {
       newCount.value = parsedData.length
       items.value.unshift(...parseDataToItems(parsedData))
-    }
-
-    switch (parsedData.COM) {
-      case WS_AUTH_RESPONSE:
-        send(JSON.stringify(WS_DATA_REQ))
-        break
-      default:
-        break
+      if (items.value.length > MAX_ITEMS * 2) {
+        items.value = items.value.slice(0, MAX_ITEMS * 2)
+      }
+    } else {
+      switch (parsedData.COM) {
+        case WS_AUTH_RESPONSE:
+          send(JSON.stringify(WS_DATA_REQ))
+          break
+        default:
+          break
+      }
     }
   }
 })

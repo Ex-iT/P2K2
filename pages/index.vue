@@ -94,8 +94,11 @@ onUnmounted(() => {
         description: 'whitespace-pre-wrap',
       }"
     >
+      <template #indicator="{ item }">
+        <UIcon :name="item.icon || 'mdi:bullhorn-variant-outline'" class="size-5 shrink-0 basis-5" :class="item.priority" />
+      </template>
       <template #title="{ item }">
-        <div v-if="item.lat && item.lon" class="transition flex gap-2 cursor-pointer hover:opacity-75" @click="openMap(item)">
+        <div v-if="item.lat && item.lon" class="transition inline-flex gap-2 cursor-pointer hover:opacity-75" @click="openMap(item)">
           <p>{{ item.title }}</p>
           <UIcon name="mdi:map-marker" class="size-5 shrink-0 basis-5" />
         </div>
@@ -104,3 +107,17 @@ onUnmounted(() => {
     </UTimeline>
   </NuxtLayout>
 </template>
+
+<style scoped>
+@reference "~/assets/css/main.css";
+
+.p1 {
+  @apply  text-red-500;
+}
+.p2 {
+  @apply text-orange-500;
+}
+.p3 {
+  @apply text-yellow-500;
+}
+</style>
