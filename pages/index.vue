@@ -109,10 +109,10 @@ onUnmounted(() => {
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex gap-2 items-center"
-            :class="{ 'transition cursor-pointer hover:opacity-75': item.lat && item.lon }"
+            :class="{ 'group transition cursor-pointer hover:opacity-75': item.lat && item.lon }"
           >
             <p class="font-medium">{{ item.title }}</p>
-            <UIcon v-if="item.lat && item.lon" name="mdi:map-marker" class="size-4 text-primary-500" />
+            <UIcon v-if="item.lat && item.lon" name="mdi:map-marker" class="size-4 text-primary-500 shrink-0 basis-4 group-hover:text-primary-600" />
           </component>
 
           <span v-if="item.timeDate.time && item.timeDate.date" class="text-neutral-500 text-xs">
