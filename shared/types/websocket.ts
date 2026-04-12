@@ -39,4 +39,8 @@ export interface TimelineAlert {
   priority: string
   lat: number
   lon: number
+  timeDate: {
+    time: string
+    date: string
+  }
 }

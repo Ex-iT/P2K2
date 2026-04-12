@@ -11,7 +11,7 @@ function openMap(item: TimelineItem) {
   url.searchParams.set('LON', item.lon.toString())
   url.searchParams.set('TXT', item.title || '')
 
-  window.open(url, '_blank')
+  return url.toString()
 }
 
 export {

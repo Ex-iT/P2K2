@@ -63,6 +63,10 @@ function parseDataToItems(data: RawTimelineData[]): TimelineAlert[] {
       priority,
       lat: typeof item.LAT === 'string' ? Number.parseFloat(item.LAT) : (item.LAT as number),
       lon: typeof item.LON === 'string' ? Number.parseFloat(item.LON) : (item.LON as number),
+      timeDate: {
+        time: parsedSpi.TME || '',
+        date: parsedSpi.DTT || '',
+      },
     }
   })
 }

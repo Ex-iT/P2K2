@@ -62,7 +62,11 @@ watch(region, (newRegion) => {
 })
 
 onMounted(() => {
-  region.value = userSettings.get('region')
+  const storedRegion = userSettings.get('region')
+  if (storedRegion) {
+    region.value = storedRegion
+  }
+  isLive.value = true
 })
 
 onUnmounted(() => {
@@ -98,11 +102,23 @@ onUnmounted(() => {
         <UIcon :name="item.icon || 'mdi:bullhorn-variant-outline'" class="size-5 shrink-0 basis-5" :class="item.priority" />
       </template>
       <template #title="{ item }">
-        <div v-if="item.lat && item.lon" class="transition inline-flex gap-2 cursor-pointer hover:opacity-75" @click="openMap(item)">
-          <p>{{ item.title }}</p>
-          <UIcon name="mdi:map-marker" class="size-5 shrink-0 basis-5" />
+        <div class="flex flex-col">
+          <component
+            :is="item.lat && item.lon ? 'a' : 'div'"
+            :href="item.lat && item.lon ? openMap(item) : undefined"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex gap-2 items-center"
+            :class="{ 'transition cursor-pointer hover:opacity-75': item.lat && item.lon }"
+          >
+            <p class="font-medium">{{ item.title }}</p>
+            <UIcon v-if="item.lat && item.lon" name="mdi:map-marker" class="size-4 text-primary-500" />
+          </component>
+
+          <span v-if="item.timeDate.time && item.timeDate.date" class="text-neutral-500 text-xs">
+            {{ item.timeDate.time }} - {{ item.timeDate.date }}
+          </span>
         </div>
-        <p v-else v-html="item.title" />
       </template>
     </UTimeline>
   </NuxtLayout>
