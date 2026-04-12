@@ -38,6 +38,6 @@ function getDiiIcon(dii: number | string) {
 }
 
 export {
-  getDiiIcon,
   DII,
+  getDiiIcon,
 }

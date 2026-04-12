@@ -10,7 +10,7 @@ export type RawTimelineArray = [
   number | string, // LON
   number | string, // REI
   string, // TXT
-  (RawCapcode | [number, string])[] // capcodes
+  (RawCapcode | [number, string])[], // capcodes
 ]
 
 export interface RawTimelineObject {

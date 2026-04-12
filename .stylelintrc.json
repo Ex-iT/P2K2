@@ -5,7 +5,7 @@
     "order/properties-alphabetical-order": true,
     "import-notation": "string",
     "at-rule-no-unknown": [true, {
-      "ignoreAtRules": ["theme", "custom-variant"]
+      "ignoreAtRules": ["theme", "custom-variant", "reference", "apply"]
     }]
   }
 }

@@ -1,5 +1,5 @@
+import type { RawTimelineData, TimelineAlert, WSResponse } from '~/shared/types/websocket'
 import { MAX_ITEMS, WS_AUTH_RESPONSE, WS_DATA_REQ, WS_HANDSHAKE, WS_RESET, WS_URL } from '~/config'
-import type { RawTimelineData, WSResponse, TimelineAlert } from '~/shared/types/websocket'
 
 const items = ref<TimelineAlert[]>([])
 const newCount = ref(0)

@@ -24,9 +24,15 @@ function normalizeItem(item: RawTimelineData): RawTimelineObject {
  * Extracts priority color and status from the text.
  */
 function getPriority(text: string) {
-  if (text.includes('P 1') || text.includes('A 1')) return 'p1'
-  if (text.includes('P 2') || text.includes('A 2')) return 'p2'
-  if (text.includes('P 3') || text.includes('B 1') || text.includes('B 2')) return 'p3'
+  if (text.includes('P 1') || text.includes('A 1')) {
+    return 'p1'
+  }
+  if (text.includes('P 2') || text.includes('A 2')) {
+    return 'p2'
+  }
+  if (text.includes('P 3') || text.includes('B 1') || text.includes('B 2')) {
+    return 'p3'
+  }
   return ''
 }
 

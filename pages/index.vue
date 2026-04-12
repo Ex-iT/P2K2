@@ -111,7 +111,9 @@ onUnmounted(() => {
             class="inline-flex gap-2 items-center"
             :class="{ 'group transition cursor-pointer hover:opacity-75': item.lat && item.lon }"
           >
-            <p class="font-medium">{{ item.title }}</p>
+            <p class="font-medium">
+              {{ item.title }}
+            </p>
             <UIcon v-if="item.lat && item.lon" name="mdi:map-marker" class="size-4 text-primary-500 shrink-0 basis-4 group-hover:text-primary-600" />
           </component>
 
@@ -128,11 +130,13 @@ onUnmounted(() => {
 @reference "~/assets/css/main.css";
 
 .p1 {
-  @apply  text-red-500;
+  @apply text-red-500;
 }
+
 .p2 {
   @apply text-orange-500;
 }
+
 .p3 {
   @apply text-yellow-500;
 }
