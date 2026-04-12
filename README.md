@@ -1,4 +1,4 @@
-[![ci](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Ex-iT/P2K2/actions/workflows/ci.yml) [![Vercel](https://vercelbadge.vercel.app/api/ex-it/p2k2)](https://p2k2.ex-it.nl/)
+[![lint](https://github.com/Ex-iT/P2K2/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/Ex-iT/P2K2/actions/workflows/lint.yml) [![Vercel](https://vercelbadge.vercel.app/api/ex-it/p2k2)](https://p2k2.ex-it.nl/)
 
 # P2000 v2
 

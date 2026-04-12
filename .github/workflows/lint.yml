@@ -1,4 +1,4 @@
-name: ci
+name: lint
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  ci:
+  lint:
     runs-on: ubuntu-latest
 
     steps:
