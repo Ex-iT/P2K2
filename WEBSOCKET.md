@@ -105,7 +105,7 @@ function combineRADs(radMaps: RADMap[]): RADMap {
   for (let i = 1; i < radMaps.length; i++) {
     const radBin = radToBin(radMaps[i]!)
     for (let j = 0; j < combinedBin.length; j++) {
-      combinedBin[j] = combinedBin[j] || radBin[j]
+      combinedBin[j] = (combinedBin[j] ?? 0) | (radBin[j] ?? 0)
     }
   }
   return binToRad(combinedBin)
@@ -349,14 +349,16 @@ function setVal(value, startBit, numBits) {
 ## Data Structure Fields
 
 ### SPI (Service Point Identifier)
-13-digit timestamp with dispatch info encoded:
+16-digit timestamp with dispatch info encoded:
 - Positions 1-2: Day (DD)
 - Positions 3-4: Month (MM)
 - Positions 5-6: Year (YY)
 - Positions 7-8: Hour (HH)
 - Positions 9-10: Minute (MM)
 - Positions 11-12: Second (SS)
-- Position 13+: Dispatch identifiers
+- Positions 13-14: DII (Dispatch Info Identifier)
+- Positions 15-16: RII (Region Info Identifier)
+- Parsed via `utils/parseSpi.ts` with bounds checking for invalid values
 
 ### DII (Dispatch Info Identifier)
 Determines the alert priority and service type (icon mapping).
@@ -370,6 +372,46 @@ Array of capability/cader identifiers:
 Contains HTML spans:
 - `<span class=s>`: Street/location
 - `<span class=c>`: City/municipality
+
+## Priority Codes
+
+The TXT field often starts with a priority code indicating urgency. These are documented codes used by the Dutch emergency services:
+
+### Ambulance
+
+| Code | Priority | Meaning |
+|------|----------|---------|
+| `A0` | p1 | Reanimation / acute life threat — highest priority, sirene + zwaailicht |
+| `A1` | p1 | Life-threatening — sirene + zwaailicht, 15 min response time |
+| `A2` | p2 | Urgent — no sirene, no immediate life threat |
+| `B` / `B1` / `B2` | p3 | Planned transport — no urgency |
+
+### Fire department (Brandweer)
+
+| Code | Priority | Meaning |
+|------|----------|---------|
+| `P 1` / `Prio 1` | p1 | Spoed — sirene + zwaailicht |
+| `P 2` / `Prio 2` | p2 | Urgent — no sirene, some traffic exemptions |
+| `P 3` / `Prio 3` | p3 | Routine — normal traffic rules |
+
+### Police (Politie)
+
+| Code | Priority | Meaning |
+|------|----------|---------|
+| `Prio 1` | p1 | Emergency response — sirene + zwaailicht |
+| `Prio 2` | p2 | Urgent response |
+
+### Implementation
+
+In `utils/parseDataToItems.ts`, the `getPriority()` function extracts the priority from `item.TXT` using regex patterns (case-insensitive). The returned string (`'p1'`, `'p2'`, `'p3'`, or `''`) is used to apply color styling to the timeline icon in `pages/index.vue`.
+
+### Visual Mapping
+
+| Priority | Color | Tailwind Class |
+|----------|-------|----------------|
+| p1 (A0/A1/P 1/Prio 1) | Red | `text-red-500` |
+| p2 (A2/P 2/Prio 2) | Amber | `text-amber-500` |
+| p3 (B/B1/B2/P 3/Prio 3) | Slate | `text-slate-400` |
 
 ## Region Data Configuration
 
@@ -415,6 +457,9 @@ const GRONINGEN = {
 | `pages/index.vue` | Main page, connects socket, loads/saves settings |
 | `config.ts` | Region definitions (REGIONS array) |
 | `utils/radixUtils.ts` | RAD binary conversion and combining |
+| `utils/parseDataToItems.ts` | Raw WebSocket data → TimelineAlert objects |
+| `utils/parseSpi.ts` | SPI timestamp parsing with bounds checking |
+| `utils/openMap.ts` | Map URL generation from coordinates |
 
 ### Data Flow
 

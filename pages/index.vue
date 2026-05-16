@@ -88,7 +88,7 @@ function getSelectedRegionData(): Record<string, string>[] {
             :href="item.lat && item.lon ? openMap(item) : undefined"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex gap-2 items-center"
+            class="inline-flex gap-2 items-start"
             :class="{ 'group transition cursor-pointer hover:opacity-75': item.lat && item.lon }"
           >
             <p class="font-medium">
@@ -114,10 +114,10 @@ function getSelectedRegionData(): Record<string, string>[] {
 }
 
 .p2 {
-  @apply text-orange-500;
+  @apply text-amber-500;
 }
 
 .p3 {
-  @apply text-yellow-500;
+  @apply text-slate-400;
 }
 </style>

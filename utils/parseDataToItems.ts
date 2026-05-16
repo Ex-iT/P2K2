@@ -17,14 +17,18 @@ function normalizeItem(item: RawTimelineData): RawTimelineObject {
   return item as RawTimelineObject
 }
 
+// Priority detection based on documented P2000 codes:
+// - Ambulance: A0 (reanimation), A1 (life-threatening), A2 (urgent), B/B1/B2 (planned transport)
+// - Brandweer: P 1 / Prio 1 (spoed), P 2 / Prio 2 (urgent), P 3 / Prio 3 (routine)
+// - Politie: Prio 1 / Prio 2
 function getPriority(text: string) {
-  if (/\bP 1\b/.test(text) || /\bA 1\b/.test(text)) {
+  if (/P\s*1\b/i.test(text) || /A\s*[01]\b/i.test(text) || /\bprio\s*1\b/i.test(text)) {
     return 'p1'
   }
-  if (/\bP 2\b/.test(text) || /\bA 2\b/.test(text)) {
+  if (/P\s*2\b/i.test(text) || /A\s*2\b/i.test(text) || /\bprio\s*2\b/i.test(text)) {
     return 'p2'
   }
-  if (/\bP 3\b/.test(text) || /\bB 1\b/.test(text) || /\bB 2\b/.test(text)) {
+  if (/P\s*3\b/i.test(text) || /\bB\d?\b/i.test(text) || /\bprio\s*3\b/i.test(text)) {
     return 'p3'
   }
   return ''

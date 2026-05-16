@@ -33,7 +33,7 @@ function binToDec(bits: number[]): number {
 }
 
 function radToBin(rad: RADMap): number[] {
-  const bin: number[] = new Array(NUM_WORDS * WORD_BITS).fill(0)
+  const bin: number[] = Array.from({ length: NUM_WORDS * WORD_BITS }).fill(0) as number[]
 
   for (let i = 0; i < NUM_WORDS; i++) {
     const radValue = rad[i] || '0'
