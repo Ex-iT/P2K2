@@ -1,5 +1,5 @@
 shellEmulator: true
-trustPolicy: no-downgrade
+trustPolicy: allow
 allowBuilds:
   '@parcel/watcher': true
   esbuild: true

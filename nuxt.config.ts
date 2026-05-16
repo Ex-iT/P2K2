@@ -70,7 +70,6 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/icon',
     '@nuxt/ui',
-    '@vueuse/nuxt',
   ],
 
   css: ['~/assets/css/main.css'],
@@ -78,6 +77,29 @@ export default defineNuxtConfig({
   icon: {
     mode: 'css',
     cssLayer: 'base',
+    clientBundle: {
+      scan: true,
+      icons: [
+        'mdi:bullhorn-variant-outline',
+        'mdi:map-marker',
+        'mdi:menu',
+        'mdi:alarm-plus',
+        'mdi:github-box',
+        'mdi:web',
+        'mdi:fire-truck',
+        'mdi:ambulance',
+        'mdi:car-emergency',
+        'mdi:lifebuoy',
+        'mdi:heart-pulse',
+        'mdi:helicopter',
+      ],
+    },
+  },
+
+  ui: {
+    experimental: {
+      componentDetection: true,
+    },
   },
 
   typescript: {
