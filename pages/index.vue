@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IREGION, UserSettings } from '~/shared/types/websocket'
-import useWebStorage from '@/composables/useWebStorage'
 import { useSocket } from '~/composables/useSocket'
+import useWebStorage from '~/composables/useWebStorage'
 import { MAX_ITEMS, REGIONS } from '~/config'
 
 const userSettings = useWebStorage<UserSettings>('userSettings')

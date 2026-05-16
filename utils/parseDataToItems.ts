@@ -18,13 +18,13 @@ function normalizeItem(item: RawTimelineData): RawTimelineObject {
 }
 
 function getPriority(text: string) {
-  if (text.includes('P 1') || text.includes('A 1')) {
+  if (/\bP 1\b/.test(text) || /\bA 1\b/.test(text)) {
     return 'p1'
   }
-  if (text.includes('P 2') || text.includes('A 2')) {
+  if (/\bP 2\b/.test(text) || /\bA 2\b/.test(text)) {
     return 'p2'
   }
-  if (text.includes('P 3') || text.includes('B 1') || text.includes('B 2')) {
+  if (/\bP 3\b/.test(text) || /\bB 1\b/.test(text) || /\bB 2\b/.test(text)) {
     return 'p3'
   }
   return ''
@@ -50,14 +50,17 @@ function parseDataToItems(data: RawTimelineData[]): TimelineAlert[] {
     const icon = getDiiIcon(item.DII)
     const priority = getPriority(item.TXT)
 
+    const lat = typeof item.LAT === 'string' ? Number.parseFloat(item.LAT) : (item.LAT as number)
+    const lon = typeof item.LON === 'string' ? Number.parseFloat(item.LON) : (item.LON as number)
+
     return {
       label: `${parsedSpi.TME} ${parsedSpi.DTT}`,
       title,
       description,
       icon,
       priority,
-      lat: typeof item.LAT === 'string' ? Number.parseFloat(item.LAT) : (item.LAT as number),
-      lon: typeof item.LON === 'string' ? Number.parseFloat(item.LON) : (item.LON as number),
+      lat: Number.isFinite(lat) ? lat : null,
+      lon: Number.isFinite(lon) ? lon : null,
       timeDate: {
         time: parsedSpi.TME || '',
         date: parsedSpi.DTT || '',

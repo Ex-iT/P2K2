@@ -24,6 +24,7 @@ let pendingRegionData: RADMap[] | null = null
 // WebSocket instance
 let wsInstance: WebSocket | null = null
 let reconnectAttempts = 0
+let reconnectTimeout: ReturnType<typeof setTimeout> | null = null
 const MAX_RECONNECT_ATTEMPTS = 3
 const RECONNECT_DELAY = 1000
 
@@ -130,6 +131,11 @@ function connect() {
     return
   }
 
+  // Reset reconnect attempts if manually reconnecting after max attempts
+  if (reconnectAttempts >= MAX_RECONNECT_ATTEMPTS) {
+    reconnectAttempts = 0
+  }
+
   status.value = 'CONNECTING'
   error.value = null
 
@@ -150,7 +156,7 @@ function connect() {
 
       if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS) {
         reconnectAttempts++
-        setTimeout(() => {
+        reconnectTimeout = setTimeout(() => {
           connect()
         }, RECONNECT_DELAY)
       } else {
@@ -178,6 +184,10 @@ function connect() {
  * Closes WebSocket connection and resets reconnection attempts
  */
 function disconnect() {
+  if (reconnectTimeout) {
+    clearTimeout(reconnectTimeout)
+    reconnectTimeout = null
+  }
   if (wsInstance) {
     wsInstance.close()
     wsInstance = null
@@ -227,6 +237,7 @@ export function useSocket() {
     items,
     newCount,
     status,
+    error,
 
     // Actions
     connect,

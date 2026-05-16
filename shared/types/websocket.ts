@@ -51,8 +51,8 @@ export interface TimelineAlert {
   description: string
   icon: string
   label: string
-  lat: number
-  lon: number
+  lat: number | null
+  lon: number | null
   priority: string
   timeDate: TimeDate
   title: string

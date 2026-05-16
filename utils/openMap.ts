@@ -1,9 +1,9 @@
 import type { TimelineAlert } from '~/shared/types/websocket'
 import { MAPS_URL } from '~/config'
 
-function openMap(item: TimelineAlert) {
+function openMap(item: TimelineAlert): string | undefined {
   if (!item.lat || !item.lon) {
-    return
+    return undefined
   }
 
   const url = new URL(MAPS_URL)

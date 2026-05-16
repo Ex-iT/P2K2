@@ -29,7 +29,7 @@ export default function useWebStorage<T>(
   function set(value: Partial<T>): T {
     if (storage && store) {
       try {
-        const currentStore = JSON.parse(storage.getItem(store) || '{}') as T
+        const currentStore = storeData.value ?? (({} as unknown) as T)
         const newStore = { ...currentStore, ...value } as T
 
         storage.setItem(store, JSON.stringify(newStore))
@@ -37,7 +37,6 @@ export default function useWebStorage<T>(
 
         return newStore
       } catch (_error) {
-        // If there's an error, return the current storeData.value or fallback
         return storeData.value ?? (({} as unknown) as T)
       }
     }

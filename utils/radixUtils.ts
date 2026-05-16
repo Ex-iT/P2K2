@@ -4,12 +4,12 @@ const RADIX = 36
 const WORD_BITS = 32
 const NUM_WORDS = 10
 
-function hexToDec(hex: string, radix: number): number {
-  return Number.parseInt(hex, radix)
+function hexToDec(hex: string): number {
+  return Number.parseInt(hex, RADIX)
 }
 
-function decToHex(dec: number, radix: number): string {
-  return dec.toString(radix)
+function decToHex(dec: number): string {
+  return dec.toString(RADIX)
 }
 
 function decToBin(decValue: number, numBits: number): number[] {
@@ -33,11 +33,11 @@ function binToDec(bits: number[]): number {
 }
 
 function radToBin(rad: RADMap): number[] {
-  const bin: number[] = Array.from({ length: NUM_WORDS * WORD_BITS }, () => 0)
+  const bin: number[] = new Array(NUM_WORDS * WORD_BITS).fill(0)
 
   for (let i = 0; i < NUM_WORDS; i++) {
     const radValue = rad[i] || '0'
-    const decValue = hexToDec(String(radValue), RADIX)
+    const decValue = hexToDec(String(radValue))
     const bits = decToBin(decValue, WORD_BITS)
 
     for (let j = 0; j < WORD_BITS; j++) {
@@ -54,7 +54,7 @@ function binToRad(bin: number[]): RADMap {
   for (let i = 0; i < NUM_WORDS; i++) {
     const wordBits = bin.slice(i * WORD_BITS, (i + 1) * WORD_BITS)
     const decValue = binToDec(wordBits)
-    rad[i] = decToHex(decValue, RADIX)
+    rad[i] = decToHex(decValue)
   }
 
   return rad
@@ -74,7 +74,7 @@ export function combineRADs(radMaps: RADMap[]): RADMap {
   for (let i = 1; i < radMaps.length; i++) {
     const radBin = radToBin(radMaps[i]!)
     for (let j = 0; j < combinedBin.length; j++) {
-      combinedBin[j] = combinedBin[j] || (radBin[j] ?? 0)
+      combinedBin[j] = (combinedBin[j] ?? 0) | (radBin[j] ?? 0)
     }
   }
 

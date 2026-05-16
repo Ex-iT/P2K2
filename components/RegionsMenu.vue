@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IREGION } from '@/shared/types/websocket'
-import { REGIONS } from '@/config'
+import type { IREGION } from '~/shared/types/websocket'
+import { REGIONS } from '~/config'
 
 interface Props {
   modelValue: IREGION[]
@@ -85,7 +85,7 @@ const open = ref(false)
           :disabled="disabled"
           @update:model-value="(checked: boolean | string) => handleAlleRegiosChecked(checked)"
         />
-        <div class="divider" />
+        <hr class="my-2 border-neutral-200 dark:border-neutral-700" role="separator">
         <template v-for="region in individualRegions" :key="region.label">
           <UCheckbox
             :model-value="isRegionSelected(region)"
