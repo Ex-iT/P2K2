@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { REGIONS } from './config'
+import type { UserSettings } from '@/shared/types/websocket'
+import useWebStorage from '@/composables/useWebStorage'
+import { REGIONS } from '@/config'
 
 useWebStorage<UserSettings>('userSettings', {
-  region: REGIONS[0]!,
+  regions: [REGIONS[0]!],
 })
 </script>
 

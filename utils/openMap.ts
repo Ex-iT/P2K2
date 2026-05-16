@@ -1,7 +1,7 @@
-import type { TimelineItem } from '@nuxt/ui'
+import type { TimelineAlert } from '~/shared/types/websocket'
 import { MAPS_URL } from '~/config'
 
-function openMap(item: TimelineItem) {
+function openMap(item: TimelineAlert) {
   if (!item.lat || !item.lon) {
     return
   }

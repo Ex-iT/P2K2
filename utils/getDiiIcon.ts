@@ -1,13 +1,4 @@
-enum DII {
-  GEN = 0, // General
-  BRW = 1, // Fire brigade
-  AMBU = 2, // Ambulance
-  POL = 3, // Police
-  KNMR = 4, // Lifeguard
-  GHOR = 5, // GHOR (Health Service)
-  REDB = 6, // Reddingsbrigade
-  HELI = 9, // Trauma helicopter
-}
+import { DII } from '~/shared/types/websocket'
 
 /**
  * Get the icon name for a given DII code.
@@ -23,7 +14,7 @@ function getDiiIcon(dii: number | string) {
     case DII.AMBU:
       return 'mdi:ambulance'
     case DII.POL:
-      return 'mdi:car-police'
+      return 'mdi:car-emergency'
     case DII.KNMR:
     case DII.REDB:
       return 'mdi:lifebuoy'
@@ -37,7 +28,4 @@ function getDiiIcon(dii: number | string) {
   }
 }
 
-export {
-  DII,
-  getDiiIcon,
-}
+export { getDiiIcon }

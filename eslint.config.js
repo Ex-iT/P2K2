@@ -3,6 +3,7 @@ import antfu from '@antfu/eslint-config'
 export default antfu({
   formatters: true,
   vue: true,
+  ignores: ['scripts/**', '*.md'],
 }, {
   rules: {
     'vue/no-multiple-template-root': 'off',
