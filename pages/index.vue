@@ -107,7 +107,7 @@ function getSelectedRegionData(): Record<string, string>[] {
 </template>
 
 <style scoped>
-@reference "~/assets/css/main.css";
+@reference "../assets/css/main.css";
 
 .p1 {
   @apply text-red-500;
