@@ -1,7 +1,4 @@
-onlyBuiltDependencies:
-  - '@parcel/watcher'
-  - '@pkgr/core'
-  - '@tailwindcss/oxide'
-  - esbuild
-  - synckit
-  - vue-demi
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  vue-demi: true

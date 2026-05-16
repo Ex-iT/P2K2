@@ -2,9 +2,6 @@ import type { RawTimelineData, RawTimelineObject, TimelineAlert } from '~/shared
 import { getDiiIcon } from './getDiiIcon'
 import { parseSpi } from './parseSpi'
 
-/**
- * Normalizes a data item whether it's an object or an array.
- */
 function normalizeItem(item: RawTimelineData): RawTimelineObject {
   if (Array.isArray(item)) {
     return {
@@ -20,9 +17,6 @@ function normalizeItem(item: RawTimelineData): RawTimelineObject {
   return item as RawTimelineObject
 }
 
-/**
- * Extracts priority color and status from the text.
- */
 function getPriority(text: string) {
   if (text.includes('P 1') || text.includes('A 1')) {
     return 'p1'
@@ -36,22 +30,17 @@ function getPriority(text: string) {
   return ''
 }
 
-/**
- * Parses raw WebSocket data into Timeline items.
- */
 function parseDataToItems(data: RawTimelineData[]): TimelineAlert[] {
   return data.map((rawItem) => {
     const item = normalizeItem(rawItem)
     const parsedSpi = parseSpi(item.SPI.toString())
 
-    // Clean up text by removing HTML tags
     const title = item.TXT.replace(/(<([^>]+)>)/g, '') || ''
 
-    // Handle both object-based and array-based capcodes
     const description = item.capcodes
       .map((capcode) => {
         if (Array.isArray(capcode)) {
-          return capcode[1] // CTT is the second element
+          return capcode[1]
         }
         return capcode.CTT
       })
@@ -62,7 +51,7 @@ function parseDataToItems(data: RawTimelineData[]): TimelineAlert[] {
     const priority = getPriority(item.TXT)
 
     return {
-      label: `${parsedSpi.TME} ${parsedSpi.DTT}`, // UTimeline expects 'label' for the date/time
+      label: `${parsedSpi.TME} ${parsedSpi.DTT}`,
       title,
       description,
       icon,

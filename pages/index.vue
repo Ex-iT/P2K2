@@ -1,95 +1,75 @@
 <script setup lang="ts">
+import type { IREGION, UserSettings } from '~/shared/types/websocket'
+import useWebStorage from '@/composables/useWebStorage'
+import { useSocket } from '~/composables/useSocket'
 import { MAX_ITEMS, REGIONS } from '~/config'
 
 const userSettings = useWebStorage<UserSettings>('userSettings')
 
-const isLive = ref(false)
-const region = ref(REGIONS[0])
+const regions = ref<IREGION[]>([REGIONS[0]!])
 
 const activeItem = ref<number | string | undefined>(undefined)
 
 const {
   newCount,
   items: allItems,
-  open: openWS,
-  close: closeWS,
-  send: sendWS,
   status: statusWS,
+  connect: openWS,
+  disconnect: closeWS,
+  requestRegionData,
+  clearItems,
 } = useSocket()
 
 const items = computed(() => allItems.value.slice(0, MAX_ITEMS))
 
-function setRegion(region: IREGION) {
-  sendWS({
-    COM: 12,
-    RAD: region.data,
-  })
-  userSettings.set({ region })
-}
-
-watch(newCount, (newCount) => {
-  if (newCount < MAX_ITEMS) {
-    activeItem.value = newCount - 1
+watch(newCount, (count) => {
+  if (count < MAX_ITEMS) {
+    activeItem.value = count - 1
   }
-})
-
-watch(isLive, (isConnected) => {
-  if (isConnected) {
-    openWS()
-  } else {
-    closeWS()
-  }
-}, {
-  immediate: true,
 })
 
 watch(statusWS, (status) => {
   if (status === 'OPEN') {
-    // @TODO: Find a better solution for this
-    setTimeout(() => {
-      sendWS({
-        COM: 12,
-        RAD: region.value!.data,
-      })
-    }, 100)
+    clearItems()
+    requestRegionData(getSelectedRegionData())
   }
 })
 
-watch(region, (newRegion) => {
-  if (newRegion && isLive.value) {
-    setRegion(newRegion)
+watch(regions, (newRegions) => {
+  userSettings.set({ regions: newRegions })
+  if (statusWS.value === 'OPEN') {
+    clearItems()
+    requestRegionData(getSelectedRegionData())
   }
 })
 
 onMounted(() => {
-  const storedRegion = userSettings.get('region')
-  if (storedRegion) {
-    region.value = storedRegion
+  const stored = userSettings.get('regions')
+  if (stored && Array.isArray(stored) && stored.length > 0) {
+    regions.value = stored
   }
-  isLive.value = true
+  openWS()
 })
 
 onUnmounted(() => {
   closeWS()
 })
+
+function getSelectedRegionData(): Record<string, string>[] {
+  const selected = regions.value
+
+  if (selected.some(r => r.label === 'Alle regios') || selected.length === 0) {
+    return [REGIONS[0]!.data]
+  }
+
+  return selected.map(r => r.data)
+}
 </script>
 
 <template>
   <NuxtLayout name="main">
     <div class="flex gap-4 items-center my-5">
-      <RegionsMenu v-model="region" :disabled="!isLive" />
-      <USwitch
-        v-model="isLive"
-        class="cursor-pointer"
-        unchecked-icon="mdi:close"
-        checked-icon="mdi:check"
-        default-value
-        :label="isLive ? 'Live data' : 'Live data gepauzeerd'"
-        :ui="{
-          base: 'cursor-pointer',
-          label: 'cursor-pointer',
-        }"
-      />
+      <RegionsMenu v-model="regions" />
     </div>
     <UTimeline
       v-model="activeItem"
