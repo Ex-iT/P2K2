@@ -14,21 +14,14 @@ jobs:
 
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
-      - name: Install pnpm env 🏗
-        uses: pnpm/action-setup@v6
+      - name: Setup pnpm + Node.js 🏗
+        uses: pnpm/setup@v2
         with:
-          run_install: false
-
-      - name: Install Node.js 🏗
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: pnpm
-
-      - name: Install dependencies 👨🏻‍💻
-        run: pnpm install
+          version: 11
+          runtime: node@24
+          cache: true
 
       - name: Run linter 👀
         run: pnpm run lint
