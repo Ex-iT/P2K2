@@ -8,23 +8,23 @@ This project uses the following technologies (from package.json):
 
 ### Core Framework
 
-- **Nuxt**: v4.4.5 (Vue 3 SSR/SSG framework)
-- **Vue**: v3.5.34
-- **Vue Router**: v5.0.7 (explicitly required for Nuxt 4 compatibility)
+- **Nuxt**: v4.6.4 (Vue 3 SSR/SSG framework)
+- **Vue**: v3.5.46
+- **Vue Router**: v5.5.1 (explicitly required for Nuxt 4 compatibility)
 
 ### UI & Styling
 
 - **@nuxt/ui**: v4.7.1 (Vue 3 component library)
-- **Tailwind CSS**: v4.3.0 (utility-first CSS framework)
+- **Tailwind CSS**: v4.3.5 (utility-first CSS framework)
 - **@nuxt/icon**: v2.2.2 (icon integration)
 - **@iconify-json/mdi**: v1.2.3 (Material Design Icons)
 
 ### Development & Quality
 
 - **TypeScript**: v6.0.3
-- **vue-tsc**: v3.2.9 (Vue TypeScript checker)
-- **ESLint**: v10.4.0 (via @nuxt/eslint)
-- **Stylelint**: v17.11.1 (CSS linting)
+- **vue-tsc**: v3.3.14 (Vue TypeScript checker)
+- **ESLint**: v10.15.0 (via @nuxt/eslint)
+- **Stylelint**: v17.16.0 (CSS linting)
 
 ## Library Usage Rules
 
