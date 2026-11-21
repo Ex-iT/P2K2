@@ -24,7 +24,7 @@ This project uses the following technologies (from package.json):
 - **TypeScript**: v6.0.3
 - **vue-tsc**: v3.3.14 (Vue TypeScript checker)
 - **ESLint**: v10.15.0 (via @nuxt/eslint)
-- **Stylelint**: v17.16.0 (CSS linting)
+- **Stylelint**: v18.1.0 (CSS linting)
 
 ## Library Usage Rules
 
@@ -51,6 +51,11 @@ This runs:
 ### Common Issues
 
 If you encounter errors related to `vue-router/volar/sfc-route-blocks`, ensure `vue-router` is at version **5.x**. This is required for Nuxt 4 + Volar compatibility.
+
+**Stylelint setup**:
+- `stylelint-config-recommended-vue` requires `postcss-html` as a peer devDependency — it must be installed in `devDependencies` (currently `^1.0.0`) or `stylelint` will fail to resolve the custom syntax.
+- `stylelint-config-standard` must match the installed `stylelint` major version (e.g. `stylelint-config-standard@41` for `stylelint@18`). Bumping stylelint without bumping the config will surface "unknown rule" errors for rules removed in newer stylelint.
+- When updating dependencies, keep the version numbers in this SKILL.md file's "Technology Stack" section in sync with `package.json`.
 
 ## WebSocket Implementation
 
