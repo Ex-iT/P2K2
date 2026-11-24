@@ -2,7 +2,7 @@ import type { IREGION } from '~/shared/types/websocket'
 
 export const WS_URL = 'wss://www.livep2000.nl:443/LSM/websocket'
 export const WS_AUTH_RESPONSE = 7
-export const MAPS_URL = 'https://maps.livep2000.nl/map.php?DII=2&LAT=&LON=&TXT=&ADR='
+export const MAPS_URL = 'https://maps.livep2000.nl/map.php?DII=2'
 export const MAX_ITEMS = 50
 
 export const REGIONS: IREGION[] = [

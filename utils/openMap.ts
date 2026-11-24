@@ -10,6 +10,7 @@ function openMap(item: TimelineAlert): string | undefined {
   url.searchParams.set('LAT', item.lat.toString())
   url.searchParams.set('LON', item.lon.toString())
   url.searchParams.set('TXT', item.title || '')
+  url.searchParams.set('ADR', `${item.timeDate.time} - ${item.timeDate.date}`)
 
   return url.toString()
 }
