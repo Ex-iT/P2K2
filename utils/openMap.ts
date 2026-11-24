@@ -7,6 +7,7 @@ function openMap(item: TimelineAlert): string | undefined {
   }
 
   const url = new URL(MAPS_URL)
+  url.searchParams.set('DII', '2')
   url.searchParams.set('LAT', item.lat.toString())
   url.searchParams.set('LON', item.lon.toString())
   url.searchParams.set('TXT', item.title || '')
